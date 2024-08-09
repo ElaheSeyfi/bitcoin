@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="asset/css/output.css">
+    <link rel="stylesheet" type="" href="asset/css/master.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://kit.fontawesome.com/9926faf686.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <title>Document</title>
+  <script src="https://cdn.tailwindcss.com" defer></script>
+</head>
+
+<body class="bg-[#282d4b]" >
+    <div class=" w-full bg-[#fff]  flex h-[100vh] justify-center content-center flex-wrap ">
+        <div class=" group protifilo z-[10]  justify-center flex items-center w-[100px] h-[100px]  fixed bottom-3 right-3">
+            <figure class="w-[100px] h-[100px]   border-8 border-[#bcff] rounded-full ">
+                <img src="asset/img/12.jpg" alt="" class="w-[100%] h-[100%] rounded-full object-cover ">
+                <span class=" group-hover:translate-x-[-100px] group-hover:translate-y-[-20px] text-[#bcff] absolute top-[50%] left-[50%]  text-[30px] translate-x-[-50%] translate-y-[-50%] z-[-1] after:absolute after:flex after:w-[40px] after:h-[30px] after:bg-transparent after:top-[10%] after:left-[25px]"><a href="https://www.instagram.com/elaheseyfi_web"><i class="fab fa-instagram"></i></a></span>
+                <span class=" group-hover:translate-x-[-100px] group-hover:translate-y-[-60px] text-[#bcff] absolute top-[50%] left-[50%]  text-[30px] translate-x-[-50%] translate-y-[-50%] z-[-1] after:absolute after:flex after:w-[40px] after:h-[30px] after:bg-transparent after:top-[10%] after:left-[25px]"><a href="https://github.com/ElaheSeyfi"><i class="fab fa-github"></i></a></span>
+                <span class=" group-hover:translate-x-[-100px] group-hover:translate-y-[-100px] text-[#bcff] absolute top-[50%] left-[50%]  text-[30px] translate-x-[-50%] translate-y-[-50%] z-[-1] after:absolute after:flex after:w-[50px] after:h-[40px] after:bg-transparent after:top-[10%] after:left-[25px]"><a href="https://www.linkedin.com/in/elahe-seyfi-44526b2a1 "><i class="fab fa-linkedin-in"></i></a></span>
+            </figure>
+        </div>
+        <div class="row w-full">
+            <div class="tite w-full min-h-[50px] flex justify-center items-center flex-wrap">
+                <h1 id="h1" class="font-bold text-4xl w-full text-center pt-[20px] mb-[10px] text-[#1c1f30]"></h1>
+                <p  id="p"  class="text-xl w-full text-center mb-[10px] text-[#1c1f30]"></p>
+            </div>
+            <div class="carts w-full mt-[20px]">
+                <div class="row justify-evenly *:shadow-3xl *:mb-[10px] *:rounded-lg *:border-[5px] *:border-[#ff9500] *:flex *:justify-center *:content-center *:flex-wrap">
+                    <div class="w-[200px] h-[200px] border ">
+                        <div class="row *:text-center">
+                            <h2 class="w-full font-bold text-3xl text-[#ff9500]">USD</h2>
+                            <h2 id="usd" class="w-full  text-[#1c1f30] text-2xl"></h2>
+                        </div>
+                    </div>
+                    <div class="w-[200px] h-[200px] border ">
+                        <div class="row *:text-center">
+                            <h2 class="w-full font-bold text-3xl text-[#ff9500]">GBP</h2>
+                            <h1 id="gbp" class="w-full text-[#1c1f30]  text-2xl"></h1>
+                        </div>
+                    </div>
+                    <div class="w-[200px] h-[200px] border ">
+                        <div class="row *:text-center">
+                            <h2 class="w-full font-bold text-3xl text-[#ff9500]">EUR</h2>
+                            <h1 id="eur" class="w-full text-[#1c1f30] text-2xl "></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+            setInterval(() => {
+            bit()
+             }, 30000);
+
+            const bit=()=>{
+            fetch('https://api.coindesk.com/v1/bpi/currentprice.json')
+            .then(elahe=>{
+                if(elahe.ok){
+                    return elahe.json()
+                }
+                return Promise.reject(err)
+            })
+            .then(data=>{
+                console.log(data)
+                document.querySelector('h1').innerHTML = data.chartName
+                document.querySelector('p').innerHTML = data.disclaimer
+                document.getElementById('usd').innerHTML=data.bpi.EUR.rate
+                document.getElementById('gbp').innerHTML =data.bpi.GBP.rate
+                document.getElementById('eur').innerHTML=data.bpi.USD.rate
+            })
+            .catch(err=>console.log(err))
+        }
+        bit()
+    </script>
+</body>
+</html>
